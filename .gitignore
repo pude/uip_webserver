@@ -1,0 +1,10 @@
+# Files to ignore/exclude from the Git repository
+*.dep
+*.ewd
+*.ewp
+*.eww
+*.dni
+*.wsdt
+*.jlink
+*.o
+
