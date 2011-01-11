@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- With script insertions REMEMBER to: 1) leave the line empty after each insertion. 2) Don't put the insertion-triggering-characters inside an html-comment :- ) -->
+<note>
+	<to>Tove</to>
+	<from>Jani</from>
+	<heading>Reminder</heading>
+	<body>Don't forget me this weekend!</body>
+	<value>%! file-stats /index.html
+	</value>	
+	<testvalue>%! test-stats /index.html
+	</testvalue>	
+</note>

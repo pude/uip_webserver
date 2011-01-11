@@ -17,6 +17,7 @@ extern const char http_header_200[84];
 extern const char http_header_404[91];
 extern const char http_content_type_plain[29];
 extern const char http_content_type_html[28];
+extern const char http_content_type_xml[27]; //
 extern const char http_content_type_css [27];
 extern const char http_content_type_text[28];
 extern const char http_content_type_png [28];
@@ -26,6 +27,7 @@ extern const char http_content_type_binary[43];
 extern const char http_html[6];
 extern const char http_shtml[7];
 extern const char http_htm[5];
+extern const char http_xml[5]; //5 .xml and a space
 extern const char http_css[5];
 extern const char http_png[5];
 extern const char http_gif[5];

@@ -54,11 +54,14 @@
 #include <stdio.h>
 #include <string.h>
 
+/* The string in quotes corresponds to the 1st paramter of the "script substitution"
+	http://www.sics.se/~adam/uip/uip-1.0-refman/a00165.html#g1dbc635a2924806f42d7e3273a6a69b5 */
 HTTPD_CGI_CALL(file, "file-stats", file_stats);
 HTTPD_CGI_CALL(tcp, "tcp-connections", tcp_stats);
 HTTPD_CGI_CALL(net, "net-stats", net_stats);
+HTTPD_CGI_CALL(test, "test-stats", test_stats); //§ First one to try out adding an extra
 
-static const struct httpd_cgi_call *calls[] = { &file, &tcp, &net, NULL };
+static const struct httpd_cgi_call *calls[] = { &file, &tcp, &net, &test, NULL };
 
 /*---------------------------------------------------------------------------*/
 static
@@ -200,4 +203,32 @@ PT_THREAD(net_stats(struct httpd_state *s, char *ptr))
   PSOCK_END(&s->sout);
 }
 /*---------------------------------------------------------------------------*/
+
+
+
+/*---------------------------------------------------------------------------*/
+static unsigned short
+generate_test_stats(void *arg)
+{
+  //TODO - initially just a copy of file-stats
+  char *f = (char *)arg;
+//  return snprintf((char *)uip_appdata, UIP_APPDATA_SIZE, "%5u", httpd_fs_count(f));
+  u16_t hejhej = 323;
+  return snprintf((char *)uip_appdata, UIP_APPDATA_SIZE, "%5u", hejhej);
+}
+/*---------------------------------------------------------------------------*/
+static
+PT_THREAD(test_stats(struct httpd_state *s, char *ptr))
+{
+  //TODO - initially just a copy of file-stats
+  PSOCK_BEGIN(&s->sout);
+
+  PSOCK_GENERATOR_SEND(&s->sout, generate_test_stats, strchr(ptr, ' ') + 1);
+
+  PSOCK_END(&s->sout);
+}
+/*---------------------------------------------------------------------------*/
+
+
+
 /** @} */

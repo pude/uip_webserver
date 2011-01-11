@@ -199,6 +199,8 @@ PT_THREAD(send_headers(struct httpd_state *s, const char *statushdr))
   } else if(strncmp(http_html, ptr, 5) == 0 ||
 	    strncmp(http_shtml, ptr, 6) == 0) {
     PSOCK_SEND_STR(&s->sout, http_content_type_html);
+  } else if(strncmp(http_xml, ptr, 4) == 0) {    //XML added
+    PSOCK_SEND_STR(&s->sout, http_content_type_xml);
   } else if(strncmp(http_css, ptr, 4) == 0) {
     PSOCK_SEND_STR(&s->sout, http_content_type_css);
   } else if(strncmp(http_png, ptr, 4) == 0) {
@@ -233,7 +235,9 @@ PT_THREAD(handle_output(struct httpd_state *s))
 		   send_headers(s,
 		   http_header_200));
     ptr = strchr(s->filename, ISO_period);
-    if(ptr != NULL && strncmp(ptr, http_shtml, 6) == 0) {
+  //if(ptr != NULL && strncmp(ptr, http_shtml, 6) == 0) {  //Original check for just shtml files
+  //Added check for script content in XML files. Might be a set of () more than needed.
+    if(ptr != NULL && ((strncmp(ptr, http_shtml, 6) == 0) || (strncmp(ptr, http_xml, 4) == 0))) {
       PT_INIT(&s->scriptpt);
       PT_WAIT_THREAD(&s->outputpt, handle_script(s));
     } else {
