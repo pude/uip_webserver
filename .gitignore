@@ -1,10 +1,8 @@
 # Files to ignore/exclude from the Git repository
+Flash Debug/
+settings/
 *.dep
-*.ewd
-*.ewp
-*.eww
-*.dni
-*.wsdt
-*.jlink
-*.o
+#*.ewd
+#*.ewp
+#*.eww
 
