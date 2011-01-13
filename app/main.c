@@ -82,7 +82,8 @@ extern Int32U SDRAM_BASE_ADDR;
 extern FontType_t Terminal_6_8_6;
 extern FontType_t Terminal_9_12_6;
 extern FontType_t Terminal_18_24_12;
-
+  /*** COMPARE FIX POINT 774745 ***/
+  /*** COMPARE FIX POINT 774745 ***/
 #define BUF ((struct uip_eth_hdr *)&uip_buf[0])
 
 
@@ -127,7 +128,6 @@ struct timer periodic_timer, arp_timer;
   // SDRAM Init
   SDRAM_Init();
 #endif // SDRAM_DEBUG
-
   // Init VIC
   VIC_Init();
   // GLCD init
@@ -135,6 +135,7 @@ struct timer periodic_timer, arp_timer;
 
   GLCD_Cursor_Dis(0);
 
+  /*** COMPARE FIX POINT 534252 ***/
   GLCD_Cursor_Cfg(CRSR_FRAME_SYNC | CRSR_PIX_32);
 
   // Sys timer init 1/100 sec tick
@@ -146,15 +147,22 @@ struct timer periodic_timer, arp_timer;
   __enable_interrupt();
   GLCD_Ctrl (TRUE);
 
-
+  /*** COMPARE FIX POINT 856364 ***/
+  /*** COMPARE FIX POINT 856364 ***/
+  /*** COMPARE FIX POINT 856364 ***/
+  /*** COMPARE FIX POINT 856364 ***/
   GLCD_SetFont(&Terminal_18_24_12,0x0000FF,0x000cd4ff);
   GLCD_SetWindow(95,10,255,33);
   GLCD_TextSetPos(0,0);
   GLCD_print("\fIAR Systems");
 
+
   GLCD_SetWindow(45,175,268,218);
   GLCD_TextSetPos(0,0);
   GLCD_print("\fuIP WEB Server demo");
+
+  /*** COMPARE FIX POINT 458923 ***/
+  /*** COMPARE FIX POINT 458923 ***/
 
   GLCD_SetWindow(5,200,319,239);
   GLCD_SetFont(&Terminal_6_8_6,0x0000FF,0x000cd4ff);
@@ -181,8 +189,17 @@ struct timer periodic_timer, arp_timer;
   // Initialize the HTTP server.
   httpd_init();
 
+
+
+/*** WHILE LOOP START ***/
   while(1)
   {
+
+  /*** COMPARE FIX POINT 938194 ***/
+  /*** COMPARE FIX POINT 938194 ***/
+  /*** COMPARE FIX POINT 938194 ***/
+  /*** COMPARE FIX POINT 938194 ***/
+  /*** COMPARE FIX POINT 938194 ***/
     uip_len = tapdev_read(uip_buf);
     if(uip_len > 0)
     {
@@ -245,5 +262,6 @@ struct timer periodic_timer, arp_timer;
         uip_arp_timer();
       }
     }
-  }
-}
+  }//while(1) loop
+
+}//main function
